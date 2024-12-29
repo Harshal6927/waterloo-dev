@@ -1,4 +1,4 @@
-# Python Discord Code Jam - Sublime Suns
+# Waterloo Dev Discord Bot
 
 ## Local Setup
 

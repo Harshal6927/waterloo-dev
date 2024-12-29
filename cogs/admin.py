@@ -9,13 +9,9 @@ class Admin(commands.Cog):
     @command(name="sync", aliases=["Sync"])
     async def sync(self, ctx: Context) -> None:
         """Globally syncs slash commands."""
-        # Replace the hardcoded user IDs with your own to get Admin access
         if ctx.author.id in (
             293926911875219456,
-            1071489894704226375,
-            1115694795705290862,
-            1190937272279912518,
-            375393568811909130,
+            852961987729555466,
         ):
             await self.bot.tree.sync()
             await ctx.send("Tree synced")

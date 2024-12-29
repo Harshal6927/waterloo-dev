@@ -2,26 +2,25 @@ import os
 
 import discord
 from discord.ext import commands
-from discord.ext.commands.bot import Bot
 from dotenv import load_dotenv
 
 load_dotenv()
 
-bot: Bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
+BOT = commands.Bot(command_prefix="!", intents=discord.Intents.all())
 
 
-@bot.event
-async def on_ready():
-    # loding cogs
+@BOT.event
+async def on_ready() -> None:
+    """Load all cogs when the bot is ready"""
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
-            await bot.load_extension(f"cogs.{filename[:-3]}")
+            await BOT.load_extension(f"cogs.{filename[:-3]}")
 
-    print(f"{bot.user} has connected to Discord!")
+    print(f"{BOT.user} has connected to Discord!")
 
 
 if __name__ == "__main__":
     try:
-        bot.run(os.getenv("TOKEN"))  # type: ignore
-    except Exception as e:
+        BOT.run(os.environ["TOKEN"])
+    except Exception as e:  # noqa: BLE001
         print(f"Failed to start the bot. Error: {e}")
